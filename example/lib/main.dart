@@ -34,10 +34,10 @@ class _MyAppState extends State<MyApp> {
         await PhoneNumberUtil.getRegionInfo(phoneNumber: s, isoCode: 'US');
     String? carrierName =
         await PhoneNumberUtil.getNameForNumber(phoneNumber: s, isoCode: 'US');
-    String exampleNumber = await PhoneNumberUtil.getExampleNumber('US');
+    _exampleNumber = await PhoneNumberUtil.getExampleNumber('US');
 
     final Map<PhoneNumberFormat, String> numberMap =
-    <PhoneNumberFormat, String>{};
+        <PhoneNumberFormat, String>{};
     for (var format in PhoneNumberFormat.values) {
       final String formattedNumber = await PhoneNumberUtil.format(
         format: format,
@@ -48,10 +48,10 @@ class _MyAppState extends State<MyApp> {
       numberMap[format] = formattedNumber;
     }
     setState(() {
-      _isValid = isValid??false;
-      _normalized = normalizedNumber??"N/A";
+      _isValid = isValid ?? false;
+      _normalized = normalizedNumber ?? "N/A";
       _regionInfo = regionInfo;
-      _carrierName = carrierName??"N/A";
+      _carrierName = carrierName ?? "N/A";
       _numberMap = numberMap;
     });
   }
@@ -108,11 +108,11 @@ class _MyAppState extends State<MyApp> {
           children: _numberMap.entries
               .map<Widget>(
                 (MapEntry<PhoneNumberFormat, String> entry) =>
-                _NumberFormatEntry(
+                    _NumberFormatEntry(
                   format: entry.key,
                   formattedNumber: entry.value,
                 ),
-          )
+              )
               .toList(),
         ),
         Row(
@@ -186,7 +186,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 class _NumberFormatEntry extends StatelessWidget {
-  const _NumberFormatEntry({Key? key, required this.format, required this.formattedNumber})
+  const _NumberFormatEntry(
+      {Key? key, required this.format, required this.formattedNumber})
       : super(key: key);
   final PhoneNumberFormat format;
   final String formattedNumber;
@@ -195,7 +196,7 @@ class _NumberFormatEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final String rawEnumString = format.toString();
     final String formatDisplayValue =
-    rawEnumString.substring(rawEnumString.lastIndexOf('.') + 1);
+        rawEnumString.substring(rawEnumString.lastIndexOf('.') + 1);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
@@ -206,7 +207,7 @@ class _NumberFormatEntry extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 12.0),
             child: Text(
-              formattedNumber ?? '',
+              formattedNumber,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
