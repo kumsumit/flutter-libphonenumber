@@ -1,5 +1,3 @@
-package android
-
 group 'com.mathrawk.libphonenumber'
 version '1.0-SNAPSHOT'
 
