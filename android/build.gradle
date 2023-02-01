@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:7.4.0'
     }
 }
 
@@ -32,7 +32,7 @@ android {
         disable 'InvalidPackage'
     }
     dependencies {
-        api 'com.googlecode.libphonenumber:libphonenumber:8.12.57'
-        api 'com.googlecode.libphonenumber:carrier:1.183'
+        api 'com.googlecode.libphonenumber:libphonenumber:8.13.5'
+        api 'com.googlecode.libphonenumber:carrier:1.189'
     }
 }
