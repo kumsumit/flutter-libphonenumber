@@ -97,7 +97,7 @@
     } else if([@"getNameForNumber" isEqualToString:call.method]) {
         NSString *name = @"";
         result(name);
-    }   } else if ([@"format" isEqualToString:call.method]) {
+    } else if ([@"format" isEqualToString:call.method]) {
               NSString *formattedNumber;
               if ([@"NATIONAL" isEqualToString:formatEnumString]) {
                   formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatNATIONAL error:&err];
