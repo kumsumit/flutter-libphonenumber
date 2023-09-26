@@ -98,18 +98,6 @@ public class LibphonenumberPlugin implements MethodCallHandler, FlutterPlugin {
       result.error("Exception", e.getMessage(), null);
     }
   }
-   private void handleGetExampleNumber(MethodCall call, Result result) {
-    final String isoCode = call.argument("iso_code");
-    Phonenumber.PhoneNumber p = phoneUtil.getExampleNumber(isoCode);
-    String regionCode = phoneUtil.getRegionCodeForNumber(p);
-    String formattedNumber = phoneUtil.format(p, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
-
-    Map<String, String> resultMap = new HashMap<String, String>();
-    resultMap.put("isoCode", regionCode);
-    resultMap.put("formattedPhoneNumber", formattedNumber);
-    result.success(resultMap);
-
-  }
   private void handleIsValidPhoneNumber(MethodCall call, Result result) {
     final String phoneNumber = call.argument("phone_number");
     final String isoCode = call.argument("iso_code");
@@ -154,7 +142,20 @@ public class LibphonenumberPlugin implements MethodCallHandler, FlutterPlugin {
       result.error("NumberParseException", e.getMessage(), null);
     }
   }
-  
+
+  private void handleGetExampleNumber(MethodCall call, Result result) {
+    final String isoCode = call.argument("iso_code");
+    Phonenumber.PhoneNumber p = phoneUtil.getExampleNumber(isoCode);
+    String regionCode = phoneUtil.getRegionCodeForNumber(p);
+    String formattedNumber = phoneUtil.format(p, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+
+    Map<String, String> resultMap = new HashMap<String, String>();
+    resultMap.put("isoCode", regionCode);
+    resultMap.put("formattedPhoneNumber", formattedNumber);
+    result.success(resultMap);
+
+  }
+
   private void handleGetNumberType(MethodCall call, Result result) {
     final String phoneNumber = call.argument("phone_number");
     final String isoCode = call.argument("iso_code");

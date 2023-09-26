@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 import 'package:libphonenumber/libphonenumber.dart';
 
 void main() => runApp(new MyApp());
@@ -34,7 +38,23 @@ class _MyAppState extends State<MyApp> {
         await PhoneNumberUtil.getRegionInfo(phoneNumber: s, isoCode: 'US');
     String? carrierName =
         await PhoneNumberUtil.getNameForNumber(phoneNumber: s, isoCode: 'US');
+<<<<<<< HEAD
     _exampleNumber = await PhoneNumberUtil.getExampleNumber('US');
+=======
+    String exampleNumber = await PhoneNumberUtil.getExampleNumber('US');
+
+    final Map<PhoneNumberFormat, String> numberMap =
+        <PhoneNumberFormat, String>{};
+    for (var format in PhoneNumberFormat.values) {
+      final String formattedNumber = await PhoneNumberUtil.format(
+        format: format,
+        phoneNumber: s,
+        isoCode: 'US',
+        removeSpacesBetweenDigits: false,
+      );
+      numberMap[format] = formattedNumber;
+    }
+>>>>>>> refs/remotes/origin/master
 
     final Map<PhoneNumberFormat, String> numberMap =
         <PhoneNumberFormat, String>{};
@@ -51,8 +71,14 @@ class _MyAppState extends State<MyApp> {
       _isValid = isValid ?? false;
       _normalized = normalizedNumber ?? "N/A";
       _regionInfo = regionInfo;
+<<<<<<< HEAD
       _carrierName = carrierName ?? "N/A";
       _numberMap = numberMap;
+=======
+      _numberMap = numberMap;
+      _carrierName = carrierName ?? "N/A";
+      _exampleNumber = exampleNumber;
+>>>>>>> refs/remotes/origin/master
     });
   }
 
@@ -187,8 +213,12 @@ class _MyAppState extends State<MyApp> {
 
 class _NumberFormatEntry extends StatelessWidget {
   const _NumberFormatEntry(
+<<<<<<< HEAD
       {Key? key, required this.format, required this.formattedNumber})
       : super(key: key);
+=======
+      {required this.format, required this.formattedNumber});
+>>>>>>> refs/remotes/origin/master
   final PhoneNumberFormat format;
   final String formattedNumber;
 

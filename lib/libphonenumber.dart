@@ -15,12 +15,7 @@ class RegionInfo {
   }
 }
 
-enum PhoneNumberFormat {
-  E164,
-  INTERNATIONAL,
-  NATIONAL,
-  RFC3966
-}
+enum PhoneNumberFormat { E164, INTERNATIONAL, NATIONAL, RFC3966 }
 
 enum PhoneNumberType {
   fixedLine,
@@ -108,7 +103,8 @@ class PhoneNumberUtil {
   }
 
   static Future<String> getExampleNumber(String isoCode) async {
-    Map<dynamic, dynamic> result = await _channel.invokeMethod('getExampleNumber', {
+    Map<dynamic, dynamic> result =
+        await _channel.invokeMethod('getExampleNumber', {
       'iso_code': isoCode,
     });
     return result['formattedPhoneNumber'].toString();
@@ -131,8 +127,8 @@ class PhoneNumberUtil {
     // that add them.
     bool removeSpacesBetweenDigits = true,
   }) async {
-    final String formatString = format.toString();
-    if(formatString.isEmpty) {
+    final String? formatString = format.toString();
+    if (formatString == null || formatString.isEmpty) {
       return phoneNumber;
     }
 
@@ -142,7 +138,7 @@ class PhoneNumberUtil {
       'format': formatString.substring(formatString.indexOf('.') + 1)
     });
 
-    if(removeSpacesBetweenDigits) {
+    if (removeSpacesBetweenDigits) {
       return formattedPhoneNumber.replaceAll(' ', '');
     } else {
       return formattedPhoneNumber;
