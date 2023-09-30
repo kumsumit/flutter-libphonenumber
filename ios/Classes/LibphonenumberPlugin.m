@@ -98,28 +98,6 @@
         NSString *name = @"";
         result(name);
     } else if ([@"format" isEqualToString:call.method]) {
-<<<<<<< HEAD
-              NSString *formattedNumber;
-              if ([@"NATIONAL" isEqualToString:formatEnumString]) {
-                  formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatNATIONAL error:&err];
-              } else if([@"INTERNATIONAL" isEqualToString:formatEnumString]) {
-                  formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatINTERNATIONAL error:&err];
-              } else if([@"E164" isEqualToString:formatEnumString]) {
-                  formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatE164 error:&err];
-              } else if([@"RFC3966" isEqualToString:formatEnumString]) {
-                  formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatRFC3966 error:&err];
-              }
-
-              if (err != nil ) {
-                  result([FlutterError errorWithCode:[NSString stringWithFormat:@"Error %ld", err.code]
-                                             message:err.domain
-                                             details:err.localizedDescription]);
-                  return;
-              }
-              result(formattedNumber);
-    }
-    else {
-=======
         NSString *formattedNumber;
         if ([@"NATIONAL" isEqualToString:formatEnumString]) {
             formattedNumber = [self.phoneUtil format:number numberFormat:NBEPhoneNumberFormatNATIONAL error:&err];
@@ -139,7 +117,6 @@
         }
         result(formattedNumber);
     } else {
->>>>>>> refs/remotes/origin/master
         result(FlutterMethodNotImplemented);
     }
 }
