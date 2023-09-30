@@ -21,23 +21,19 @@ import java.util.Map;
 
 /** LibphonenumberPlugin */
 public class LibphonenumberPlugin implements MethodCallHandler, FlutterPlugin {
+  private MethodChannel channel;
   private static final PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
   private static final PhoneNumberToCarrierMapper phoneNumberToCarrierMapper = PhoneNumberToCarrierMapper.getInstance();
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
-    final MethodChannel channel = new MethodChannel(binding.getBinaryMessenger(), "codeheadlabs.com/libphonenumber");
+    channel = new MethodChannel(binding.getBinaryMessenger(), "codeheadlabs.com/libphonenumber");
     channel.setMethodCallHandler(new LibphonenumberPlugin());
   }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-  }
-
-  /** Keeping around to support older apps that aren't using v2 Android embedding */
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "codeheadlabs.com/libphonenumber");
-    channel.setMethodCallHandler(new LibphonenumberPlugin());
+    channel.setMethodCallHandler(null);
   }
 
   @Override
