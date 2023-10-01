@@ -7,7 +7,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -37,7 +36,7 @@ public class LibphonenumberPlugin implements MethodCallHandler, FlutterPlugin {
   }
 
   @Override
-  public void onMethodCall(MethodCall call, Result result) {
+  public void onMethodCall(MethodCall call, @NonNull Result result) {
     switch (call.method) {
       case "isValidPhoneNumber":
         handleIsValidPhoneNumber(call, result);
